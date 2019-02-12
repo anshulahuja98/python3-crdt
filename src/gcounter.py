@@ -28,4 +28,4 @@ class GCounter:
         self.display()
 
     def display(self):
-        print(self.payload)
+        print(self.payload.values())
