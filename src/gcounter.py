@@ -25,7 +25,7 @@ class GCounter:
         for key in self.payload:
             new_payload[key] = max(self.payload[key], gc2.payload[key])
         self.payload = new_payload
-        self.display()
+        # self.display()
 
     def display(self):
         print(self.payload.values())
