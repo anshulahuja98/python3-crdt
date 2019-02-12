@@ -13,7 +13,7 @@ class GCounter:
             print("{}".format(e))
 
     def query(self):
-        return sum(self.payload.value())
+        return sum(self.payload.values())
 
     def compare(self, gc2):
         for key in self.payload:
