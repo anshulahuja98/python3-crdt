@@ -1,7 +1,4 @@
-import sys
-
-sys.path.insert(0, sys.argv[1])
-
+import set_sys_path
 import uuid
 from pncounter import PNCounter
 from node import Node
