@@ -59,7 +59,7 @@ class LWWElementSet():
         return False
 
     def compare(self, lww):
-        return self.lwwf.compare(self.A, lww.A) and self.lwwf.compare(self.A, lww.A)
+        return self.lwwf.compare(self.A, lww.A) and self.lwwf.compare(self.R, lww.R)
 
     def merge(self, lww):
         self.A = self.lwwf.merge(self.A, lww.A)
