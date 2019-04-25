@@ -1,6 +1,3 @@
-from datetime import datetime
-
-
 class SeqFunctions:
     @staticmethod
     def add(payload, elem, id):
@@ -42,34 +39,31 @@ class Sequence():
         self.id = id
         self.seqf = SeqFunctions()
 
-    def update_seq(self, func):
-        if func == "r":
-            for id in self.id_remv_list:
-                if id in self.id_seq:
-                    del self.elem_seq[self.id_seq.index(id)]
-                    self.id_seq.remove(id)
-            self.id_seq.sort()
-        if func == "a":
+    def update_seq(self):
+        for item in self.elem_list:
+            if item[1] not in self.id_remv_list and item[1] not in self.id_seq:
+                self.id_seq.append(item[1])
+        for id in self.id_remv_list:
+            if id in self.id_seq:
+                del self.elem_seq[self.id_seq.index(id)]
+                self.id_seq.remove(id)
+        self.id_seq.sort()
+        for id in self.id_seq:
             for item in self.elem_list:
-                if item[1] not in self.id_remv_list and item[1] not in self.id_seq:
-                    self.id_seq.append(item[1])
-            self.id_seq.sort()
-            for id in self.id_seq:
-                for item in self.elem_list:
-                    if item[1] == id:
-                        if len(self.elem_seq) > self.id_seq.index(id):
-                            if item[0] != self.elem_seq[self.id_seq.index(id)]:
-                                self.elem_seq.insert(self.id_seq.index(id), item[0])
-                        else:
-                            self.elem_seq.append(item[0])
+                if item[1] == id:
+                    if len(self.elem_seq) > self.id_seq.index(id):
+                        if item[0] != self.elem_seq[self.id_seq.index(id)]:
+                            self.elem_seq.insert(self.id_seq.index(id), item[0])
+                    else:
+                        self.elem_seq.append(item[0])
 
     def add(self, elem, id):
         self.elem_list = self.seqf.add(self.elem_list, elem, id)
-        self.update_seq("a")
+        self.update_seq()
 
     def remove(self, id):
         self.id_remv_list = self.seqf.remove(self.id_remv_list, id)
-        self.update_seq("r")
+        self.update_seq()
 
     def query(self, id):
         for item in self.elem_list:
@@ -80,10 +74,15 @@ class Sequence():
                     return False
         return False
 
-    def merge(self, seq):
-        self.elem_list = self.seqf.merge(self.elem_list, seq.elem_list)
-        self.id_remv_list = self.seqf.merge(self.id_remv_list, seq.id_remv_list)
-        self.update_seq("a")
+    def merge(self, list, func='na'):
+        if func == 'na':
+            self.elem_list = self.seqf.merge(self.elem_list, list.elem_list)
+            self.id_remv_list = self.seqf.merge(self.id_remv_list, list.id_remv_list)
+        elif func == 'elem':
+            self.elem_list = self.seqf.merge(self.elem_list, list)
+        elif func == 'id':
+            self.id_remv_list = self.seqf.merge(self.id_remv_list, list)
+        self.update_seq()
 
     def display(self):
         self.seqf.display("Elem List", self.elem_list)
