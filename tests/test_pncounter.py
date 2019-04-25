@@ -1,8 +1,8 @@
 import unittest
 import uuid
-import set_sys_path
-from pncounter import PNCounter
-from node import Node
+import py3crdt
+from py3crdt.pncounter import PNCounter
+from py3crdt.node import Node
 
 
 class TestPNCounter(unittest.TestCase):

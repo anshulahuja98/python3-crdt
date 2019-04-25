@@ -1,4 +1,4 @@
-from gcounter import GCounter
+from .gcounter import GCounter
 
 
 class PNCounter:

@@ -1,4 +1,4 @@
-from gset import GSet
+from .gset import GSet
 
 
 class TwoPSet:

@@ -1,8 +1,8 @@
 import unittest
 import uuid
-import set_sys_path
-from gcounter import GCounter
-from node import Node
+import py3crdt
+from py3crdt.gcounter import GCounter
+from py3crdt.node import Node
 
 
 class TestGCounter(unittest.TestCase):

@@ -1,7 +1,7 @@
 import unittest
 import uuid
-import set_sys_path
-from twopset import TwoPSet
+import py3crdt
+from py3crdt.twopset import TwoPSet
 
 
 class TestLWW(unittest.TestCase):

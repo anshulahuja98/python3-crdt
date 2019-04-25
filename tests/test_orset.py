@@ -1,7 +1,7 @@
 import unittest
 import uuid
-import set_sys_path
-from orset import ORSet
+import py3crdt
+from py3crdt.orset import ORSet
 
 
 class TestORSet(unittest.TestCase):

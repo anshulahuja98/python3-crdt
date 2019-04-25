@@ -1,7 +1,7 @@
 import unittest
 import uuid
-import set_sys_path
-from sequence import Sequence
+import py3crdt
+from py3crdt.sequence import Sequence
 from datetime import datetime
 
 
