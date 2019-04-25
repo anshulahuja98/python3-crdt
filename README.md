@@ -1,9 +1,49 @@
 # python3-crdt
 A python library for CRDTs (Conflict-free Replicated Data types)
 
-## Usage
-To know how to use this CRDT library in your project, check implementation in tests folder.
+## Installation
+You can get the library directly from PyPI:
 
+pip install python3-crdt
+
+## Usage
+If you have installed the python3-crdt package you can start using the crdts right away:
+```python
+from py3crdt.gset import GSet
+gset1 = GSet(id=1)
+gset2 = GSet(id=2)
+gset1.add('a')
+gset1.add('b')
+gset1.display()
+# ['a', 'b']   ----- Output
+gset2.add('b')
+gset2.add('c')
+gset2.display()
+# ['b', 'c']   ----- Output
+gset1.merge(gset2)   
+gset1.display()
+# ['a', 'b', 'c']   ----- Output
+gset2.merge(gset1)
+gset2.display()
+# ['a', 'b', 'c']   ----- Output
+```
+
+#### CRDTs deployed:-
+- gcounter.GCounter
+- pncounter.PNCounter
+- gset.GSet
+- twopset.TwoPSet
+- lww.LWWElementSet
+- orest.ORSet
+- sequence.Sequence
+
+## API
+- add()
+- remove()
+- merge()
+- display()
+- query()
+  
 ## Intro to CRDTs
 #### What are CRDTS?
 CRDTs or Conflict-Free Replicated Data Types are data structures which eases the replication of data across multiple devices in a network. Any change/update is applied locally and then transmitted to other replicas. Each replica merges it’s local replica with the incoming change/update. Inconsistencies might arise during merging but CRDTs mathematically guarantees that the replicas will converge eventually if all the changes/updates are executed by each replica. 
