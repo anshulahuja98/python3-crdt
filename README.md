@@ -4,7 +4,9 @@ A python library for CRDTs (Conflict-free Replicated Data types)
 ## Installation
 You can get the library directly from PyPI:
 
+```python
 pip install python3-crdt
+```
 
 ## Usage
 If you have installed the python3-crdt package you can start using the crdts right away:
@@ -44,6 +46,11 @@ gset2.display()
 - display()
 - query()
   
+## Testing
+Use following command to test packages
+```python
+python -m unittest tests.test_<package_name>
+```  
 ## Intro to CRDTs
 #### What are CRDTS?
 CRDTs or Conflict-Free Replicated Data Types are data structures which eases the replication of data across multiple devices in a network. Any change/update is applied locally and then transmitted to other replicas. Each replica merges it’s local replica with the incoming change/update. Inconsistencies might arise during merging but CRDTs mathematically guarantees that the replicas will converge eventually if all the changes/updates are executed by each replica. 
