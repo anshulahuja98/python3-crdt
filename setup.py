@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="python3-crdt",
-    version="1.0.1",
+    version="1.0.2",
     author="Geetesh Gupta",
     author_email="ggguitarg31@gmail.com",
     description="A python library for CRDTs (Conflict-free Replicated Data types)",
