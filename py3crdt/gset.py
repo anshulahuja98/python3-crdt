@@ -3,7 +3,7 @@ class GSet:
     Grow Only Set CRDT Implementation.
 
     Notes:
-        A set of elements where elements can only be added and once and element is added, it cannot be removed.
+        A set of elements where elements can only be added and once an element is added, it cannot be removed.
         Merging returns union of the two G-Sets.
 
     Attributes:
