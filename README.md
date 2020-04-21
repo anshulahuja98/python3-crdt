@@ -1,6 +1,10 @@
 # python3-crdt
 A python library for CRDTs (Conflict-free Replicated Data types)
 
+Created and Maintained by:
+- [Anshul Ahuja](https://github.com/anshulahuja98)
+- [Geetesh Gupta](https://github.com/geetesh-gupta)
+
 ## Usage
 To know how to use this CRDT library in your project, check implementation in tests folder.
 
