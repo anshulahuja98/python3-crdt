@@ -1,7 +1,7 @@
 import unittest
 import uuid
-import set_sys_path
-from lww import LWWElementSet as LWWSet
+import py3crdt
+from py3crdt.lww import LWWElementSet as LWWSet
 
 
 class TestLWW(unittest.TestCase):

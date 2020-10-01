@@ -1,7 +1,7 @@
 import unittest
 import uuid
-import set_sys_path
-from gset import GSet
+import py3crdt
+from py3crdt.gset import GSet
 
 
 class TestLWW(unittest.TestCase):
