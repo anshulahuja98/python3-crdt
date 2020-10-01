@@ -9,6 +9,9 @@ pip install python3-crdt
 ```
 ## Documentation
 Checkout the documentation of the library on [ReadtheDocs](https://python3-crdt.readthedocs.io/en/latest/)
+Created and Maintained by:
+- [Anshul Ahuja](https://github.com/anshulahuja98)
+- [Geetesh Gupta](https://github.com/geetesh-gupta)
 
 ## Usage
 If you have installed the python3-crdt package you can start using the crdts right away:
