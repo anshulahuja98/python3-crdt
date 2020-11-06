@@ -12,41 +12,47 @@ class LWWFunctions:
         The function to add an element to Payload.
 
         Args:
-            payload (list): payloads in which element has to be addeds.
+            payload (list): payload in which element has to be added.
             elem (any_type): The element to be added.
 
         Returns:
-            payload (list): payloads in which element is added.
+            payload (list): payload in which element is added.
         """
 
-        payload.append({'elem': elem, 'timestamp': datetime.now()})
-        payload.sort(key=lambda i: i['timestamp'])
+        # Boolean to keep track if elem present in the payload
+        elem_present = False
+
+        for i in range(len(payload)):
+            # If elem is present update the timestamp
+            if payload[i]['elem'] == elem:
+                payload[i]['timestamp'] = datetime.now()
+                elem_present = True
+        
+        # If elem is not present add the elem
+        if not elem_present:
+            payload.append({'elem': elem, 'timestamp': datetime.now()})
+
+        payload.sort(key=lambda i: i['elem'])
+
         return payload
 
     @staticmethod
     def compare(payload1, payload2):
         """
-        The function to compare two LWW objects' payloads.
+        The function to compare two LWW objects' payload.
 
         Args:
-            payload1 (list): payloads to be compared withs.
-            payload2 (list): payloads to be compared tos.
+            payload1 (list): payload to be compared with.
+            payload2 (list): payload to be compared to.
 
         Returns:
-            bool: True if payloads of both objects are same, False otherwise.
+            bool: True if payload of both objects are same, False otherwise.
         """
 
-        # Bool value to test equality
-        item = False
-
         for item_1 in payload1:
-            for item_2 in payload2:
-                if item_2['elem'] == item_1['elem']:
-                    item = True
-                    break
-            if item:
-                break
-        return item
+            if item_1 not in payload2:
+                return False
+        return True
 
     @staticmethod
     def merge(payload1, payload2):
@@ -54,21 +60,33 @@ class LWWFunctions:
         The function to merge the payload2 to payload1.
 
         Args:
-            payload1 (list): payloads to be merged tos.
-            payload2 (list): payloads to be merged froms.
+            payload1 (list): payload to be merged to.
+            payload2 (list): payload to be merged from.
 
         Returns:
-            payload1 (list): payloads merged tos.
+            payload1 (list): payload merged to.
         """
 
         # Append the elements of argument's payload to the object's payload.
-        for item in payload2:
-            if item not in payload1:
-                payload1.append(item)
+        for item2 in payload2:
+            
+            # Boolean to keep track if item2 present in the payload1            
+            elem_found = False
+            
+            for i, item1 in enumerate(payload1):
+                # If item2's elem is present and its timestamp is greater than that of item1,
+                # update the timestamp
+                if item1['elem'] == item2['elem']:
+                    elem_found = True
+                
+                    if item1['timestamp'] < item2['timestamp']:
+                        payload1[i]['timestamp'] = item2['timestamp']
 
-        # Sort the payload.
-        payload1.sort(key=lambda i: i['timestamp'])
+            # If item2 is not present, add it to the payload1
+            if not elem_found:
+                payload1.append(item2)
 
+        payload1.sort(key=lambda i: i['elem'])
         return payload1
 
     @staticmethod
@@ -77,8 +95,8 @@ class LWWFunctions:
         The function to print the object.
 
         Args:
-            name (string): payloads types.
-            payload (list): payloads to displays.
+            name (string): payload type.
+            payload (list): payload to display.
         """
 
         # Prints the type name of the payload
@@ -163,7 +181,7 @@ class LWWElementSet():
 
     def compare(self, lww):
         """
-        The function to compare the payloads with the argument's payloads.
+        The function to compare the payload with the argument's payload.
 
         Args:
             lww (LWWElementSet): Object to be compared to.
@@ -172,14 +190,14 @@ class LWWElementSet():
             Compares payload 'A' and payload 'R' of the objects
 
         Returns:
-            bool: True if payloads of both objects are same, False otherwise.
+            bool: True if payload of both objects are same, False otherwise.
         """
 
         return self.lwwf.compare(self.A, lww.A) and self.lwwf.compare(self.R, lww.R)
 
     def merge(self, lww):
         """
-        The function to merge the payloads with the argument's payloads.
+        The function to merge the payload with the argument's payload.
 
         Args:
             lww (LWWElementSet): Object to be merged from.
@@ -193,7 +211,7 @@ class LWWElementSet():
 
     def display(self):
         """
-        The function to print the object's payloads.
+        The function to print the object's payload.
         """
 
         # Display payload 'A'

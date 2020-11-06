@@ -43,12 +43,12 @@ class TestLWW(unittest.TestCase):
     def test_merging_lww_set_without_removal(self):
         # Check lww1 merging
         self.lww1.merge(self.lww2)
-        self.assertEqual([_['elem'] for _ in self.lww1.A], ['a', 'b', 'b', 'c', 'd'])
+        self.assertEqual([_['elem'] for _ in self.lww1.A], ['a', 'b', 'c', 'd'])
         self.assertEqual([_['elem'] for _ in self.lww1.R], [])
 
         # Check lww2 merging
         self.lww2.merge(self.lww1)
-        self.assertEqual([_['elem'] for _ in self.lww2.A], ['a', 'b', 'b', 'c', 'd'])
+        self.assertEqual([_['elem'] for _ in self.lww2.A], ['a', 'b', 'c', 'd'])
         self.assertEqual([_['elem'] for _ in self.lww2.R], [])
 
         # Check if they are both equal
@@ -114,13 +114,13 @@ class TestLWW(unittest.TestCase):
 
         # Check lww1 merging
         self.lww1.merge(self.lww2)
-        self.assertEqual([_['elem'] for _ in self.lww1.A], ['a', 'b', 'b', 'c', 'd'])
-        self.assertEqual([_['elem'] for _ in self.lww1.R], ['b', 'b', 'c'])
+        self.assertEqual([_['elem'] for _ in self.lww1.A], ['a', 'b', 'c', 'd'])
+        self.assertEqual([_['elem'] for _ in self.lww1.R], ['b', 'c'])
 
         # Check lww2 merging
         self.lww2.merge(self.lww1)
-        self.assertEqual([_['elem'] for _ in self.lww2.A], ['a', 'b', 'b', 'c', 'd'])
-        self.assertEqual([_['elem'] for _ in self.lww2.R], ['b', 'b', 'c'])
+        self.assertEqual([_['elem'] for _ in self.lww2.A], ['a', 'b', 'c', 'd'])
+        self.assertEqual([_['elem'] for _ in self.lww2.R], ['b', 'c'])
 
         # Check if they are both equal
         self.assertEqual([_['elem'] for _ in self.lww1.A], [_['elem'] for _ in self.lww2.A])
