@@ -52,9 +52,6 @@ class TestPNCounter(unittest.TestCase):
         self.pn2.dec(self.node2.id)
 
     def test_merge(self):
-        self.pn1.display("pn1")
-        self.pn2.display("pn2")
-
         # Merge pn2 with pn1
         self.pn2.merge(self.pn1)
         # Merge pn1 with pn2

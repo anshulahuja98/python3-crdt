@@ -19,8 +19,8 @@ class PNCounter:
     """
 
     def __init__(self, id):
-        self.P = PNCounter(id)
-        self.N = PNCounter(id)
+        self.P = GCounter(id)
+        self.N = GCounter(id)
         self.id = id
 
     def add_new_node(self, key):
